@@ -9,7 +9,7 @@
 /*** 1. GLOBAL ***/
 
 /* Reset / Normalize
-  ============================= */
+============================= */
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -193,7 +193,7 @@ template {
 }
 
 /* Variables
-  ============================= */
+============================= */
 
 :root {
     --color-primary: #D73953;
@@ -833,7 +833,6 @@ ul.row {
 
 /* Card WORK
       ============================= */
-
 .card-work .card-outer {
     position: relative;
     overflow: hidden;
@@ -865,10 +864,6 @@ ul.row {
     transition: var(--transition-duration) var(--transition-cubic-bezier);
 }
 
-.card-work:hover .card-inner {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
 .card-work .card-title {
     text-align: center;
     margin: 0;
@@ -880,6 +875,14 @@ ul.row {
     display: block;
     text-decoration: none;
     padding-top: 45%;
+    opacity: 0;
+}
+
+.card-work .card-title a:focus,
+.card-work:hover .card-title a {
+    opacity: 1;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .card-work .card-title a::after {
@@ -889,17 +892,6 @@ ul.row {
     right: 0;
     bottom: 0;
     content: '';
-}
-
-.card-work .card-title a {
-    opacity: 0;
-}
-
-.card-work .card-title a:focus,
-.card-work:hover .card-title a {
-    opacity: 1;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
 }
 
 @media only screen and (max-width: 767px) {
@@ -916,6 +908,10 @@ ul.row {
     .card-work .card-title a {
         display: block;
         padding: 2rem 1rem 0 1rem;
+    }
+
+    .card-work:hover .card-inner {
+        background-color: transparent;
     }
 
     .card-work:hover .card-image {
