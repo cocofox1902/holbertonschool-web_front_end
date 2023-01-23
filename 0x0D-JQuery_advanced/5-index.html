@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Task 5</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <script>
+        function createFamilyTree() {
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+            thead.innerHTML = "<tr><th>Firstname</th><th>Lastname</th></tr>";
+            document.body.appendChild(table);
+            table.appendChild(thead);
+            table.appendChild(tbody);
+        }
+        function addNewMember(firstName, lastName) {
+            let new_table_1 = $("<tr></tr>");
+            let column_x = $("<td>(x)</td>");
+            column_x.css("background-color", "orange");
+            column_x.click(function () { $(new_table_1).remove() });
+            new_table_1.append(`<td>${firstName}</td>`);
+            new_table_1.append(`<td>${lastName}</td>`);
+            new_table_1.append(column_x);
+            $("tbody").append(new_table_1);
+        }
+        createFamilyTree();
+        addNewMember("Guillaume", "Salva");
+        addNewMember("Arielle", "Snizt");
+        addNewMember("Fanette", "Snizt");
+        addNewMember("Gerard", "Snizt");
+        addNewMember("Victor", "Salva");
+
+    </script>
+</body>
+
+</html>
