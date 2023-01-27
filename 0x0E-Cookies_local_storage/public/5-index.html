@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cookies</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+</head>
+
+<body>
+</body>
+<script>
+    const availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+    function addItemToCart(item) {
+        localStorage.setItem(item, true);
+    }
+    function createStore() {
+        const list = document.createElement('ul');
+        for (const key in availableItems) {
+            const item = document.createElement('li');
+            item.innerText = availableItems[key];
+            item.setAttribute('onclick', `addItemToCart('${availableItems[key]}')`);
+            list.appendChild(item);
+        }
+        document.body.appendChild(list);
+    }
+    function displayCart() {
+        const existProducts = Object.keys(localStorage);
+        const countProducts = existProducts.length;
+        if (existProducts) {
+            const paragraph = document.createElement('p');
+            if (countProducts) {
+                paragraph.innerText = `You previously had ${countProducts} items in your cart`;
+            }
+            document.body.appendChild(paragraph);
+        }
+    }
+    if (typeof (Storage) !== 'undefined') {
+        createStore();
+        displayCart();
+    } else {
+        alert('Sorry, your browser does not support Web storage. Try again with a better one');
+    }
+</script>
+
+</html>

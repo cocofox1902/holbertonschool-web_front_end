@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cookies</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+</head>
+
+<body>
+    <div class="form">
+        <h2>Login to the website</h2>
+        <input type="text" id="firstname" placeholder="First Name">
+        <input type="text" id="email" placeholder="Email">
+        <button onclick="setCookiesAndShowWelcomeMessage();">Log me in</button>
+    </div>
+    <div class="dashboard">
+    </div>
+</body>
+<script>
+    function setCookiesAndShowWelcomeMessage() {
+        const firstname = document.getElementById("firstname").value;
+        const email = document.getElementById("email").value;
+        Cookies.set('firstname', firstname, { expires: 10 });
+        Cookies.set('email', email, { expires: 10 });
+        showWelcomeMessageOrForm();
+    }
+
+    function showForm() {
+        const msg = document.getElementById('welcome_msg');
+        msg.remove();
+        document.getElementsByClassName("form")[0].style.display = "block";
+    }
+
+    function hideForm() {
+        document.getElementsByClassName("form")[0].style.display = "none";
+    }
+
+    function deleteCookiesAndShowForm() {
+        Cookies.remove('firstname');
+        Cookies.remove('email');
+        showForm();
+    }
+
+    function showWelcomeMessageOrForm() {
+        const firstname = Cookies.get('firstname');
+        const email = Cookies.get('email');
+
+        if (!firstname || !email)
+            showForm();
+        else {
+            hideForm();
+            const msg = document.createElement('h1');
+            const logOut = document.createElement('a');
+            msg.innerText = `Welcome ${firstname}`;
+            logOut.innerText = '(logout)';
+            msg.setAttribute('id', 'welcome_msg');
+            logOut.setAttribute('onclick', 'deleteCookiesAndShowForm()');
+            logOut.style.cursor = 'pointer';
+            logOut.style.fontWeight = 'normal';
+            logOut.style.fontStyle = 'italic';
+            logOut.style.marginLeft = '10px';
+            msg.appendChild(logOut);
+            document.body.appendChild(msg);
+        }
+    }
+</script>
+
+</html>
